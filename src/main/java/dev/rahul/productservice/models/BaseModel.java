@@ -1,7 +1,12 @@
 package dev.rahul.productservice.models;
 
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+
 import java.util.UUID;
 
+@MappedSuperclass
 public class BaseModel {
-    private UUID uuid;
+    @Id
+    private Long id;
 }
