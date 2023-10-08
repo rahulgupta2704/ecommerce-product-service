@@ -1,15 +1,17 @@
 package dev.rahul.productservice.dtos;
 
+import dev.rahul.productservice.models.Price;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
-public class GenericProductDto {
-    private String id;
+@Setter
+public class ProductDto {
     private String title;
-    private Double price;
-    private String category;
+
     private String description;
+
     private String image;
+
+    private Price price;
 }

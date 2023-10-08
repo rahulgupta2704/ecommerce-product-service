@@ -7,11 +7,11 @@ import dev.rahul.productservice.models.Product;
 import java.util.List;
 
 public interface ProductService {
-    GenericProductDto getProductById(Long id) throws NotFoundException;
+    GenericProductDto getProductById(String id) throws NotFoundException;
 
     GenericProductDto createProduct(GenericProductDto genericProductDto);
 
-    GenericProductDto deleteProductById(Long id);
+    GenericProductDto deleteProductById(String id);
 
     List<GenericProductDto> getAllProducts();
 

@@ -5,6 +5,7 @@ import dev.rahul.productservice.dtos.GenericProductDto;
 import dev.rahul.productservice.exceptions.NotFoundException;
 import dev.rahul.productservice.models.Product;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class FakeStoreProductService implements ProductService {
         product.setDescription(fakeStoreProductDto.getDescription());
         product.setCategory(fakeStoreProductDto.getCategory());
         product.setPrice(fakeStoreProductDto.getPrice());
-        product.setId(fakeStoreProductDto.getId());
+        product.setId(fakeStoreProductDto.getId().toString());
 
         return product;
     }
@@ -41,7 +42,7 @@ public class FakeStoreProductService implements ProductService {
         product.setDescription(genericProductDto.getDescription());
         product.setCategory(genericProductDto.getCategory());
         product.setPrice(genericProductDto.getPrice());
-        product.setId(genericProductDto.getId());
+        product.setId(Long.parseLong(genericProductDto.getId()));
 
         return product;
     }
@@ -51,7 +52,7 @@ public class FakeStoreProductService implements ProductService {
     public FakeStoreProductService(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplateBuilder = restTemplateBuilder;
     }
-    public GenericProductDto getProductById(Long id) throws NotFoundException {
+    public GenericProductDto getProductById(String id) throws NotFoundException {
         RestTemplate restTemplate = restTemplateBuilder.build();
 
         //Doubt what's <> this in JAVA?
@@ -93,7 +94,7 @@ public class FakeStoreProductService implements ProductService {
         return response.getBody();
     }
 
-    public GenericProductDto deleteProductById(Long id) {
+    public GenericProductDto deleteProductById(String id) {
         RestTemplate restTemplate = restTemplateBuilder.build();
         RequestCallback requestCallback = restTemplate.acceptHeaderRequestCallback(FakeStoreProductDto.class);
         ResponseEntity<FakeStoreProductDto> response = restTemplate.exchange(

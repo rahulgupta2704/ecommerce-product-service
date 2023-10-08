@@ -44,7 +44,7 @@ public class ProductController {
     }
 
     @GetMapping("{id}") //end point and the variable if any
-    public GenericProductDto getProductById(@PathVariable("id") Long id) throws NotFoundException {
+    public GenericProductDto getProductById(@PathVariable("id") String id) throws NotFoundException {
             return productService.getProductById(id);
     }
 
@@ -61,7 +61,7 @@ public class ProductController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") Long id) {
+    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") String id) {
         return new ResponseEntity<>(
                 productService.deleteProductById(id),
                 HttpStatus.OK
